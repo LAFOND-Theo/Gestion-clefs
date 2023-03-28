@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('portes', function (Blueprint $table) {
-            $table->increments('id_porte');
-            $table->unsignedInteger('id_barillet');
-            $table->foreign('id_barillet')->references('id_barillet')->on('barillets')->onDelete('cascade');
+        Schema::create('variures', function (Blueprint $table) {
+            $table->increments('id_variure');
+            $table->string('libelle_variure');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('portes');
+        Schema::dropIfExists('salles');
     }
 };

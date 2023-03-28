@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('modele_barillets', function (Blueprint $table) {
+        Schema::create('barillets', function (Blueprint $table) {
             $table->increments('id_barillet');
             $table->string('code_clef');
-            $table->string('type_variure');
-            $table->bigInteger('stock_clef');
+            $table->integer('stock_clef');
+            $table->unsignedInteger('id_variure');
+            $table->foreign('id_variure')->references('id_variure')->on('variures')->onDelete('cascade');
         });
     }
 

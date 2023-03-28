@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exemplaires', function (Blueprint $table) {
-            $table->increments('id_exemplaire');
+        Schema::create('archivages', function (Blueprint $table) {
+            $table->increments('id_batiment');
             $table->date('date_acquisition');
+            $table->date('date_rendu');
+            $table->unsignedInteger('id_exemplaire');
+            $table->foreign('id_exemplaire')->references('id_exemplaire')->on('exemplaires')->onDelete('cascade');            
             $table->unsignedInteger('id_personne');
             $table->foreign('id_personne')->references('id_personne')->on('possesseur_de_clefs')->onDelete('cascade');
-            $table->unsignedInteger('code_type');
-            $table->foreign('code_type')->references('code_type')->on('type_exemplaires')->onDelete('cascade');
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exemplaires');
+        Schema::dropIfExists('archivages');
     }
 };

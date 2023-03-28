@@ -20,23 +20,23 @@ return new class extends Migration
             $table->string('numTel');
             $table->string('email');
             $table->string('adresse');
-            $table->bigInteger('code_postal');
+            $table->Integer('code_postal');
         });
             
         Schema::create('utilisateurs', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_personne');
+            $table->unsignedInteger('id_personne');
             $table->foreign('id_personne')->references('id_personne')->on('personnes')->onDelete('cascade');
             $table->primary('id_personne');
             $table->string('login_hash');
             $table->string('mdp_hash');
-            $table->unsignedBigInteger('id_role');
+            $table->unsignedInteger('id_role');
             $table->foreign('id_role')->references('id_role')->on('roles')->onDelete('cascade');
         });
             
         Schema::create('possesseur_de_clefs', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_personne');
+            $table->unsignedInteger('id_personne');
             $table->foreign('id_personne')->references('id_personne')->on('personnes')->onDelete('cascade');
-            $table->primary('personne_id');
+            $table->primary('id_personne');
         });
     }
 
