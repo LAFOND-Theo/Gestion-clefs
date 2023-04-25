@@ -11,9 +11,10 @@ class Batiment extends Model
 
     protected $fillable = ['id_batiment', 'nom_batiment'];
 
+    //Relation 0,n
     public function salles()
     {
-        return $this->hasMany(Salle::class)->withPivot('id_salle', 'id_batiment');
+        return $this->hasMany(Salle::class);
     }
 
     public static function createBatiment($nom_batiment)

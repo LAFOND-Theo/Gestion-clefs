@@ -9,11 +9,13 @@ class Porte extends Model
 {
     protected $fillable = ['id_porte', 'id_barillet'];
 
+    //Relation 1,n avec une table pivot se trouvant entre la table Salle et la table Porte
     public function salles()
     {
         return $this->hasMany(Salle::class)->withPivot('id_porte', 'id_salle');
     }
 
+    //Relation 1,1
     public function barillet()
     {
         return $this->belongsTo(Barillet::class,'id_barillet');
